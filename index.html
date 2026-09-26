@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Чек-лист флориста — скачать приложение</title>
+<meta name="description" content="Приложение для флористов цветочного салона: чек-лист смены, КПД, график по магазинам, итоги по накладным.">
+<meta name="theme-color" content="#1F5E46">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+<style>
+  :root {
+    --green: #1F5E46; --green-2: #3E8C69; --mint: #DDEFE5; --pink: #D4537E; --pink-soft: #FBE3EC;
+    --bg: #F6F4EF; --ink: #1B1D1C; --muted: #6B706D; --gold: #B7791F; --card: #fff;
+    --radius: 22px; --shadow: 0 10px 30px rgba(31, 94, 70, .12);
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.5; }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+  /* ---------- Hero ---------- */
+  .hero { position: relative; overflow: hidden; color: #fff; padding: 28px 0 84px;
+    background: radial-gradient(1200px 500px at 85% -10%, rgba(212, 83, 126, .35), transparent 60%),
+                linear-gradient(160deg, var(--green) 0%, var(--green-2) 100%); }
+  .petal { position: absolute; width: 180px; height: 180px; border-radius: 60% 0 60% 0; background: rgba(255,255,255,.06); }
+  .petal.a { top: -40px; left: -60px; transform: rotate(20deg); }
+  .petal.b { bottom: -70px; right: 30%; width: 240px; height: 240px; transform: rotate(-30deg); }
+  nav { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+  nav .logo { font-size: 26px; }
+  nav .sp { flex: 1; }
+  nav a.small { font-weight: 500; opacity: .85; text-decoration: none; font-size: 14px; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; margin-top: 48px; }
+  h1 { font-size: clamp(34px, 5.4vw, 56px); line-height: 1.07; letter-spacing: -.02em; }
+  h1 em { font-style: normal; color: #FFD3E2; }
+  .lead { font-size: 18px; opacity: .92; margin: 18px 0 28px; max-width: 520px; }
+  .btn { display: inline-flex; align-items: center; gap: 12px; padding: 16px 26px; border-radius: 999px; font-weight: 700;
+    text-decoration: none; font-size: 17px; transition: transform .15s ease, box-shadow .15s ease; border: 0; cursor: pointer; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-main { background: #fff; color: var(--green); box-shadow: 0 12px 30px rgba(0,0,0,.18); }
+  .btn-main .ico { font-size: 22px; }
+  .btn-main small { display: block; font-weight: 500; font-size: 12px; color: var(--muted); }
+  .meta { margin-top: 14px; font-size: 14px; opacity: .85; }
+  .meta b { font-weight: 700; }
+
+  /* ---------- Phone mockup ---------- */
+  .phone { justify-self: center; width: 280px; border-radius: 42px; padding: 12px; background: #0f1512;
+    box-shadow: 0 30px 60px rgba(0,0,0,.35), inset 0 0 0 2px #2b332f; transform: rotate(3deg); }
+  .screen { border-radius: 32px; overflow: hidden; background: var(--bg); color: var(--ink); height: 540px; }
+  .s-top { background: linear-gradient(90deg, var(--green), var(--green-2)); color: #fff; padding: 26px 16px 14px; }
+  .s-top b { display: block; font-size: 15px; }
+  .s-top span { font-size: 11px; opacity: .85; }
+  .s-body { padding: 12px; }
+  .ring-card { background: #fff; border-radius: 16px; padding: 12px; display: flex; gap: 12px; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+  .ring { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 14px; color: var(--green);
+    background: conic-gradient(var(--green) 0 86%, #E4ECE7 86% 100%); position: relative; }
+  .ring::after { content: ""; position: absolute; inset: 7px; background: #fff; border-radius: 50%; }
+  .ring span { position: relative; z-index: 1; }
+  .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 10px; font-weight: 700; }
+  .pill.ok { background: var(--mint); color: var(--green); }
+  .pill.shop { background: var(--pink-soft); color: var(--pink); }
+  .task { background: #fff; border-radius: 12px; padding: 9px 10px; margin-top: 8px; display: flex; gap: 8px; align-items: center; font-size: 12px; }
+  .task i { width: 18px; height: 18px; border-radius: 6px; border: 2px solid #C9CEC9; flex: none; }
+  .task.done i { background: var(--green); border-color: var(--green); position: relative; }
+  .task.done i::after { content: "✓"; color: #fff; font-size: 12px; font-style: normal; position: absolute; left: 2px; top: -2px; }
+  .task.done { color: var(--muted); }
+  .task time { margin-left: auto; font-size: 10px; color: var(--muted); }
+
+  /* ---------- Sections ---------- */
+  section { padding: 72px 0; }
+  h2 { font-size: clamp(26px, 3.6vw, 36px); letter-spacing: -.01em; margin-bottom: 8px; }
+  .sub { color: var(--muted); margin-bottom: 32px; max-width: 620px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .card { background: var(--card); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); }
+  .card .em { font-size: 30px; width: 54px; height: 54px; display: grid; place-items: center; border-radius: 16px; background: var(--mint); margin-bottom: 14px; }
+  .card:nth-child(3n+2) .em { background: var(--pink-soft); }
+  .card:nth-child(3n) .em { background: #FBF0DC; }
+  .card h3 { font-size: 18px; margin-bottom: 6px; }
+  .card p { color: var(--muted); font-size: 15px; }
+
+  .roles { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .role { border-radius: var(--radius); padding: 28px; }
+  .role.florist { background: var(--mint); }
+  .role.admin { background: var(--pink-soft); }
+  .role h3 { font-size: 22px; margin-bottom: 12px; }
+  .role li { margin: 8px 0 8px 20px; }
+
+  .steps { counter-reset: s; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .step { background: #fff; border-radius: var(--radius); padding: 24px; position: relative; box-shadow: var(--shadow); }
+  .step::before { counter-increment: s; content: counter(s); position: absolute; top: -14px; left: 20px; width: 34px; height: 34px;
+    border-radius: 50%; background: var(--green); color: #fff; display: grid; place-items: center; font-weight: 800; }
+  .step h3 { margin: 8px 0 6px; font-size: 17px; }
+  .step p { color: var(--muted); font-size: 15px; }
+
+  .safe { background: linear-gradient(160deg, #173F31, var(--green)); color: #fff; border-radius: 30px; padding: 40px; display: grid;
+    grid-template-columns: auto 1fr; gap: 26px; align-items: center; }
+  .safe .big { font-size: 64px; }
+  .safe p { opacity: .88; }
+
+  .cta { text-align: center; }
+  .cta .btn-main { background: var(--green); color: #fff; }
+  .cta .btn-main small { color: rgba(255,255,255,.75); }
+  details { background: #fff; border-radius: 16px; padding: 16px 20px; margin-top: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.05); text-align: left; }
+  summary { cursor: pointer; font-weight: 600; }
+  details p, details pre { margin-top: 10px; color: var(--muted); white-space: pre-wrap; font-family: inherit; }
+  footer { padding: 40px 0 60px; text-align: center; color: var(--muted); font-size: 14px; }
+
+  @media (max-width: 860px) {
+    .hero-grid, .roles, .safe { grid-template-columns: 1fr; }
+    .grid, .steps { grid-template-columns: 1fr; }
+    .phone { transform: none; margin-top: 10px; }
+    .hero { padding-bottom: 56px; }
+    section { padding: 52px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="petal a"></div><div class="petal b"></div>
+  <div class="wrap">
+    <nav>
+      <span class="logo">🌸</span><span>Чек-лист флориста</span>
+      <span class="sp"></span>
+      <a class="small" href="#install">Как установить</a>
+    </nav>
+    <div class="hero-grid">
+      <div>
+        <h1>Порядок в салоне —<br><em>в одном приложении</em></h1>
+        <p class="lead">Ежедневный чек-лист смены, КПД каждого флориста, график по магазинам, выручка по накладным и сообщения команде.</p>
+        <a class="btn btn-main" id="dl" href="#install">
+          <span class="ico">⬇</span>
+          <span>Скачать для Android<small id="dl-sub">загружаю информацию о версии…</small></span>
+        </a>
+        <div class="meta" id="meta">Android 8.0 и новее · бесплатно</div>
+      </div>
+
+      <div class="phone" aria-hidden="true">
+        <div class="screen">
+          <div class="s-top"><b>Аня</b><span>Флорист · 26 сентября, суббота</span></div>
+          <div class="s-body">
+            <span class="pill shop">📍 Магазин: Южный</span>
+            <div class="ring-card" style="margin-top:8px">
+              <div class="ring"><span>86%</span></div>
+              <div>
+                <b style="font-size:13px">КПД смены</b><br>
+                <span class="pill ok">Хорошо</span>
+                <div style="font-size:11px;color:var(--muted);margin-top:4px">▶ Начало 08:47</div>
+              </div>
+            </div>
+            <div style="font-size:11px;font-weight:700;margin:12px 2px 0;color:var(--muted)">09:00 · РЕВИЗИЯ</div>
+            <div class="task done"><i></i>Проверить холодильник<time>09:04</time></div>
+            <div class="task done"><i></i>Обновить воду в вазах<time>09:12</time></div>
+            <div class="task done"><i></i>Собрать витринные букеты<time>09:40</time></div>
+            <div class="task"><i></i>Проверить инструменты</div>
+            <div style="font-size:11px;font-weight:700;margin:12px 2px 0;color:var(--muted)">20:00 · ЗАКРЫТИЕ</div>
+            <div class="task"><i></i>Итог по накладной + фото</div>
+            <div class="task"><i></i>Закрыть смену</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>Всё, что нужно салону</h2>
+    <p class="sub">Работает на обычных телефонах, без сервера и абонентской платы. Уведомления приходят, даже когда приложение закрыто.</p>
+    <div class="grid">
+      <div class="card"><div class="em">✅</div><h3>Чек-лист смены</h3><p>4 блока по времени, время каждой отметки, опоздания и начало смены — автоматически.</p></div>
+      <div class="card"><div class="em">📅</div><h3>Календарь смен</h3><p>Кто, когда и в каком магазине работает. Повтор недели на весь месяц в одно касание.</p></div>
+      <div class="card"><div class="em">🏪</div><h3>Несколько магазинов</h3><p>Южный, Октябрьский и любые другие. Сводка, КПД и выручка отдельно по каждому.</p></div>
+      <div class="card"><div class="em">📊</div><h3>КПД и рейтинг</h3><p>Средний КПД за неделю и месяц, медали, пропускаемые пункты, выгрузка в Excel.</p></div>
+      <div class="card"><div class="em">💰</div><h3>Итоги по накладной</h3><p>Сумма за день и фото накладной прямо из телефона — руководитель видит сразу.</p></div>
+      <div class="card"><div class="em">🔔</div><h3>Напоминания</h3><p>«Заполни чек-лист», «Закрой смену», «не начала смену» — каждому своё.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap roles">
+    <div class="role florist">
+      <h3>🌷 Флористу</h3>
+      <ul>
+        <li>Вход по имени и ПИН-коду</li>
+        <li>Чек-лист на сегодня и кольцо КПД</li>
+        <li>Свой график смен на месяц</li>
+        <li>Заметки от руководителя и ответы</li>
+        <li>История смен и оценки</li>
+      </ul>
+    </div>
+    <div class="role admin">
+      <h3>👔 Руководителю</h3>
+      <ul>
+        <li>День: кто начал, кто опоздал, кто закрыл смену</li>
+        <li>Календарь смен по магазинам</li>
+        <li>Статистика по флористам и магазинам</li>
+        <li>Сообщения всем или конкретному флористу</li>
+        <li>Команда: сотрудники, ПИН-коды, магазины</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="safe">
+      <div class="big">🔒</div>
+      <div>
+        <h2 style="margin-bottom:10px">Данные под защитой</h2>
+        <p>ПИН-код проверяет сервер Google с защитой от подбора — в базе он не хранится. Флорист видит только свои смены и сообщения, всё остальное — только руководитель. Обновления подписаны ключом салона: подменить приложение нельзя.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="install">
+  <div class="wrap">
+    <h2>Как установить</h2>
+    <p class="sub">Приложение ставится напрямую, без Google Play. Дальше оно само предложит обновиться, когда выйдет новая версия.</p>
+    <div class="steps">
+      <div class="step"><h3>Скачайте APK</h3><p>Откройте эту страницу на телефоне и нажмите «Скачать для Android».</p></div>
+      <div class="step"><h3>Разрешите установку</h3><p>Телефон спросит разрешение устанавливать приложения из браузера — разрешите один раз.</p></div>
+      <div class="step"><h3>Войдите</h3><p>Выберите своё имя и введите ПИН-код, который выдал руководитель.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" style="padding-top:0">
+  <div class="wrap">
+    <a class="btn btn-main" id="dl2" href="#install"><span class="ico">⬇</span><span>Скачать приложение<small id="dl2-sub">последняя версия</small></span></a>
+    <details id="notes" hidden><summary>Что нового в версии <span id="nv"></span></summary><pre id="nt"></pre></details>
+    <details>
+      <summary>Телефон не даёт установить?</summary>
+      <p>Настройки → Приложения → ваш браузер → «Установка неизвестных приложений» → Разрешить. На Xiaomi и Realme также отключите «Защиту от вредоносных приложений» на время установки, если она блокирует файл.</p>
+    </details>
+    <details>
+      <summary>Уведомления не приходят</summary>
+      <p>Настройки → Приложения → Чек-лист флориста → Батарея → «Без ограничений». На Xiaomi дополнительно включите «Автозапуск».</p>
+    </details>
+  </div>
+</section>
+
+<footer>🌸 Чек-лист флориста · <span id="year"></span></footer>
+
+<script>
+  // Репозиторий берём из адреса GitHub Pages: https://<owner>.github.io/<repo>/
+  const owner = location.hostname.endsWith('.github.io') ? location.hostname.split('.')[0] : '';
+  const repo = location.pathname.split('/').filter(Boolean)[0] || (owner ? owner + '.github.io' : '');
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  async function load() {
+    if (!owner) return fail();
+    const releases = `https://github.com/${owner}/${repo}/releases/latest`;
+    try {
+      const r = await fetch(`https://api.github.com/repos/${owner}/${repo}/releases/latest`, { headers: { Accept: 'application/vnd.github+json' } });
+      if (!r.ok) throw new Error(r.status);
+      const j = await r.json();
+      const apk = (j.assets || []).find(a => a.name.endsWith('.apk'));
+      const v = j.tag_name.replace(/^v/, '');
+      const date = new Date(j.published_at).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+      const size = apk ? (apk.size / 1048576).toFixed(1) + ' МБ' : '';
+      const href = apk ? apk.browser_download_url : releases;
+      for (const id of ['dl', 'dl2']) document.getElementById(id).href = href;
+      document.getElementById('dl-sub').textContent = `версия ${v}${size ? ' · ' + size : ''}`;
+      document.getElementById('dl2-sub').textContent = `версия ${v} от ${date}`;
+      document.getElementById('meta').innerHTML = `Версия <b>${v}</b> · ${date} · Android 8.0 и новее`;
+      if (j.body && j.body.trim()) {
+        document.getElementById('nv').textContent = v;
+        document.getElementById('nt').textContent = j.body.trim();
+        document.getElementById('notes').hidden = false;
+      }
+    } catch (e) {
+      for (const id of ['dl', 'dl2']) document.getElementById(id).href = releases;
+      document.getElementById('dl-sub').textContent = 'все версии на GitHub';
+    }
+  }
+  function fail() { document.getElementById('dl-sub').textContent = 'ссылка появится после публикации'; }
+  load();
+</script>
+</body>
+</html>
