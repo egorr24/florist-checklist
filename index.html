@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Чек-лист флориста — скачать приложение</title>
-<meta name="description" content="Приложение для флористов цветочного салона: чек-лист смены, КПД, график по магазинам, итоги по накладным.">
+<title>Трава Чек — приложение салона цветов «Трава»</title>
+<meta name="description" content="Трава Чек — приложение салона цветов «Трава»: чек-лист смены, КПД, график по магазинам, чаты, зарплата.">
 <meta name="theme-color" content="#1F5E46">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌸</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='26' fill='%23123D2C'/><path fill='white' d='M22 20h56a5 5 0 0 1 5 5v5a5 5 0 0 1-5 5H22a5 5 0 0 1-5-5v-5a5 5 0 0 1 5-5zM41 35h18v44a5 5 0 0 1-5 5h-8a5 5 0 0 1-5-5z'/></svg>">
 <style>
   :root {
     --green: #1F5E46; --green-2: #3E8C69; --mint: #DDEFE5; --pink: #D4537E; --pink-soft: #FBE3EC;
@@ -27,7 +27,8 @@
   .petal.a { top: -40px; left: -60px; transform: rotate(20deg); }
   .petal.b { bottom: -70px; right: 30%; width: 240px; height: 240px; transform: rotate(-30deg); }
   nav { display: flex; align-items: center; gap: 10px; font-weight: 700; }
-  nav .logo { font-size: 26px; }
+  nav .logo { width: 34px; height: 34px; border-radius: 10px; background: #123D2C; color: #fff; display: grid; place-items: center;
+    font-weight: 900; font-size: 22px; box-shadow: 0 0 0 2px rgba(255,255,255,.25); }
   nav .sp { flex: 1; }
   nav a.small { font-weight: 500; opacity: .85; text-decoration: none; font-size: 14px; }
   .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; margin-top: 48px; }
@@ -120,14 +121,14 @@
   <div class="petal a"></div><div class="petal b"></div>
   <div class="wrap">
     <nav>
-      <span class="logo">🌸</span><span>Чек-лист флориста</span>
+      <span class="logo">Т</span><span>Трава Чек</span>
       <span class="sp"></span>
       <a class="small" href="#install">Как установить</a>
     </nav>
     <div class="hero-grid">
       <div>
         <h1>Порядок в салоне —<br><em>в одном приложении</em></h1>
-        <p class="lead">Ежедневный чек-лист смены, КПД каждого флориста, график по магазинам, выручка по накладным и сообщения команде.</p>
+        <p class="lead">Приложение салона цветов «Трава»: чек-лист смены, КПД каждого флориста, график по магазинам, чаты команды и зарплата.</p>
         <a class="btn btn-main" id="dl" href="#install">
           <span class="ico">⬇</span>
           <span>Скачать для Android<small id="dl-sub">загружаю информацию о версии…</small></span>
@@ -137,7 +138,7 @@
 
       <div class="phone" aria-hidden="true">
         <div class="screen">
-          <div class="s-top"><b>Аня</b><span>Флорист · 26 сентября, суббота</span></div>
+          <div class="s-top"><b>Аня</b><span>Флорист · Трава Чек</span></div>
           <div class="s-body">
             <span class="pill shop">📍 Магазин: Южный</span>
             <div class="ring-card" style="margin-top:8px">
@@ -169,10 +170,10 @@
     <p class="sub">Работает на обычных телефонах, без сервера и абонентской платы. Уведомления приходят, даже когда приложение закрыто.</p>
     <div class="grid">
       <div class="card"><div class="em">✅</div><h3>Чек-лист смены</h3><p>4 блока по времени, время каждой отметки, опоздания и начало смены — автоматически.</p></div>
-      <div class="card"><div class="em">📅</div><h3>Календарь смен</h3><p>Кто, когда и в каком магазине работает. Повтор недели на весь месяц в одно касание.</p></div>
-      <div class="card"><div class="em">🏪</div><h3>Несколько магазинов</h3><p>Южный, Октябрьский и любые другие. Сводка, КПД и выручка отдельно по каждому.</p></div>
+      <div class="card"><div class="em">📅</div><h3>Календарь смен</h3><p>Кто, когда и в каком магазине работает — Южный, Октябрьский и любые другие.</p></div>
+      <div class="card"><div class="em">💬</div><h3>Чаты команды</h3><p>Личные чаты как в Telegram: фото, голосовые, «прочитано». Сообщения приходят мгновенно.</p></div>
       <div class="card"><div class="em">📊</div><h3>КПД и рейтинг</h3><p>Средний КПД за неделю и месяц, медали, пропускаемые пункты, выгрузка в Excel.</p></div>
-      <div class="card"><div class="em">💰</div><h3>Итоги по накладной</h3><p>Сумма за день и фото накладной прямо из телефона — руководитель видит сразу.</p></div>
+      <div class="card"><div class="em">💰</div><h3>Итоги по накладной</h3><p>Сумма за день и до 10 фото прямо из телефона — руководитель видит сразу.</p></div>
       <div class="card"><div class="em">💸</div><h3>Зарплата</h3><p>Ставка за смену × КПД плюс % с продаж. Периоды с выплатой 10 и 25 числа, отметка «выплачено».</p></div>
     </div>
   </div>
@@ -186,7 +187,7 @@
         <li>Вход по имени и ПИН-коду</li>
         <li>Чек-лист на сегодня и кольцо КПД</li>
         <li>Свой график смен на месяц</li>
-        <li>Заметки от руководителя и ответы</li>
+        <li>Чаты с коллегами: фото и голосовые</li>
         <li>Свои смены, КПД и начисленная зарплата</li>
       </ul>
     </div>
@@ -196,7 +197,7 @@
         <li>День: кто начал, кто опоздал, кто закрыл смену</li>
         <li>Календарь смен по магазинам</li>
         <li>Статистика по флористам и магазинам</li>
-        <li>Сообщения всем или конкретному флористу</li>
+        <li>Личные чаты с каждым сотрудником</li>
         <li>Команда: сотрудники, ПИН-коды, магазины</li>
         <li>Зарплата по периодам и настройка уведомлений</li>
       </ul>
@@ -243,7 +244,7 @@
   </div>
 </section>
 
-<footer>🌸 Чек-лист флориста · <span id="year"></span></footer>
+<footer>Трава Чек · салон цветов «Трава» · <span id="year"></span></footer>
 
 <script>
   // Репозиторий берём из адреса GitHub Pages: https://<owner>.github.io/<repo>/
