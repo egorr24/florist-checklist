@@ -256,9 +256,20 @@
     if (!owner) return fail();
     const releases = `https://github.com/${owner}/${repo}/releases/latest`;
     try {
-      const r = await fetch(`https://api.github.com/repos/${owner}/${repo}/releases/latest`, { headers: { Accept: 'application/vnd.github+json' } });
-      if (!r.ok) throw new Error(r.status);
-      const j = await r.json();
+      // сначала version.json рядом с сайтом (у API GitHub лимит 60 запросов в час)
+      let j = null;
+      try {
+        const v = await fetch(`version.json?t=${Date.now()}`);
+        if (v.ok) {
+          const s = (await v.json()).stable;
+          if (s) j = { tag_name: 'v' + s.version, published_at: s.date, body: s.notes, assets: [{ name: 'app.apk', size: s.size, browser_download_url: s.url }] };
+        }
+      } catch (e) { }
+      if (!j) {
+        const r = await fetch(`https://api.github.com/repos/${owner}/${repo}/releases/latest`, { headers: { Accept: 'application/vnd.github+json' } });
+        if (!r.ok) throw new Error(r.status);
+        j = await r.json();
+      }
       const apk = (j.assets || []).find(a => a.name.endsWith('.apk'));
       const v = j.tag_name.replace(/^v/, '');
       const date = new Date(j.published_at).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
