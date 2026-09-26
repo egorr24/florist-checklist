@@ -269,7 +269,7 @@
       document.getElementById('meta').innerHTML = `Версия <b>${v}</b> · ${date} · Android 8.0 и новее`;
       if (j.body && j.body.trim()) {
         document.getElementById('nv').textContent = v;
-        document.getElementById('nt').textContent = j.body.trim();
+        document.getElementById('nt').textContent = j.body.replace(/\[срочно\]/gi, '').trim();
         document.getElementById('notes').hidden = false;
       }
     } catch (e) {
