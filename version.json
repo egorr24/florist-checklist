@@ -9,12 +9,12 @@
   "size": 3200080
  },
  "beta": {
-  "version": "3.9.8",
-  "notes": "• Шефу на iPhone сразу приходят события: начала смену, опоздала, закрыла смену, итог по накладной\n• Флористкам на iPhone — статус зарплаты и премии сразу",
+  "version": "3.9.9",
+  "notes": "• Сообщения в чатах идут строго по порядку отправки (по часам сервера, а не телефона)",
   "critical": false,
-  "beta": false,
-  "date": "2026-09-27T05:25:15Z",
-  "url": "https://github.com/egorr24/florist-checklist/releases/download/v3.9.8/FloristChecklist-3.9.8.apk",
-  "size": 3200080
+  "beta": true,
+  "date": "2026-09-27T05:42:46Z",
+  "url": "https://github.com/egorr24/florist-checklist/releases/download/v3.9.9/FloristChecklist-3.9.9.apk",
+  "size": 3200076
  }
 }
