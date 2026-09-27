@@ -9,12 +9,12 @@
   "size": 3200080
  },
  "beta": {
-  "version": "3.9.9",
-  "notes": "• Сообщения в чатах идут строго по порядку отправки (по часам сервера, а не телефона)",
+  "version": "3.10.0",
+  "notes": "Новый дизайн: тёмно-зелёное «жидкое стекло», новые иконки. Напоминание в 20:40: «В 21:00 закрываем смену и отправляем накладную». Объявления от «Трава Чек».",
   "critical": false,
   "beta": true,
-  "date": "2026-09-27T05:42:46Z",
-  "url": "https://github.com/egorr24/florist-checklist/releases/download/v3.9.9/FloristChecklist-3.9.9.apk",
-  "size": 3200076
+  "date": "2026-09-27T14:04:19Z",
+  "url": "https://github.com/egorr24/florist-checklist/releases/download/v3.10.0/FloristChecklist-3.10.0.apk",
+  "size": 3200080
  }
 }
