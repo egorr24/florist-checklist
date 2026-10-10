@@ -453,3 +453,23 @@ input[type="date"], input[type="time"] { color-scheme: dark; }
 .rate-input input { flex: 1; min-width: 0; border: 0; background: none; color: #fff; font-size: 16px; padding: 11px 0; outline: none; text-align: right; }
 .rate-input input::placeholder { color: rgba(214, 240, 225, .35); }
 .rate-row.tier .text-btn { padding: 8px; color: var(--muted); }
+
+/* Старт 11.10 (StartIntro): «Т» со вспышкой света, текст поднимается; фон неподвижный — пятна под стеклом не «рябят» */
+.intro { position: fixed; inset: 0; z-index: 90; display: flex; align-items: center; justify-content: center; padding: 28px 20px;
+  background: radial-gradient(circle at 50% 38%, rgba(159, 240, 184, .16), transparent 55%), #0B2A1E; }
+.intro-inner { width: 100%; max-width: 420px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.intro-logo { position: relative; display: flex; align-items: center; justify-content: center; animation: intro-pop .9s cubic-bezier(.34, 1.56, .64, 1) both; }
+.intro-halo { position: absolute; width: 190px; height: 190px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(159, 240, 184, .55), transparent 65%); animation: intro-flash 1.4s ease-out both; }
+.intro-logo > :not(.intro-halo) { position: relative; }
+.intro-text { margin-top: 30px; width: 100%; animation: intro-rise .7s .55s cubic-bezier(.2, .8, .2, 1) both; }
+.intro-title { font-size: 30px; font-weight: 900; color: #fff; letter-spacing: -.02em; }
+.intro-sub { margin-top: 12px; font-size: 16px; line-height: 1.45; color: rgba(241, 255, 246, .85); }
+.intro-rates { margin-top: 16px; padding: 12px 16px; border-radius: 20px; font-size: 14.5px; line-height: 1.45; color: var(--mint);
+  background: var(--glass-fill, rgba(255, 255, 255, .06)); border: 1px solid rgba(255, 255, 255, .12); }
+.mt24 { margin-top: 24px; }
+@keyframes intro-pop { from { transform: scale(.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes intro-flash { 0% { transform: scale(.3); opacity: 0; } 35% { transform: scale(1.15); opacity: 1; } 100% { transform: scale(1); opacity: .35; } }
+@keyframes intro-rise { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .intro-logo, .intro-halo, .intro-text { animation: none; } }
+.tier-box { margin-top: 10px; padding-top: 6px; border-top: 1px solid rgba(255, 255, 255, .07); }
